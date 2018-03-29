@@ -1,0 +1,184 @@
+{% extends "home.html" %}
+{% block body %}
+
+  <div class="hero-unit">
+  	<h1><strong><u>Basics about WebAPI</u></strong></h1>
+  	<p>
+  		This is a PlaceFinder WebAPI . Here are some points mentioned that will help you to access the website with more ease .
+  	</p>
+  	<br>
+  	<p><strong>If you are not logged in :</strong></p>
+  	<li>You are shown a home page having a navbar with options to goto HOME page , AboutAPI page , ContactUs page and a dropdown menu having options of login or regiter</li>
+  	<li>There is a search place photo search bar at the top right . If you write any valid name of place then 5 photos best match of the place name will be shown to you</li>
+  	<li>In case of any problem you can go to ContactUs page</li>
+  	<li>To use and understand about the API you can read the documentation of API </li>
+  	<li>To become a user and to get a API key you need to register yourself first</li>
+  	<li>Login to use features of API</li>
+  	<br>
+  	<p><strong>If you are logged in :</strong></p>
+  	<li>As soon as you loged in you are redirected to your dashboard</li>
+  	<li>At your dashboard you are shown your personal information along with your API key</li>
+  	<li>Your browser history is also shown to you</li>
+  	<li>There is a log out button in navbar to log your self out and go back to the home page</li>
+  	<li>API docs are also shown at aboutAPI along with examples how to use the API</li>
+  	<li>A place search button is also avialable here . You can write any place name here and some basic information about the place along with some of its photographs will be shown to you . You can also write some note about your reviews and save it or you can edit your review if you had already written a note previously</li>
+<br>
+  	<p><strong>Thats it . You can explore more features of this WebAPI by yourself . For any further query you can contact us , we would try to help you as early as possible .</strong></p>
+    <h1><strong><u>Developers API</u></strong></h1>
+    <p>This is PlaceFinder developers API documentation page. Here you can find all the information you need to get started with our API.
+    </p>
+    <div style="margin-left: 30px">
+      1. <a href="/aboutapi/#1">Your Unique Developer API Key</a><br/>
+      2. <a href="/aboutapi/#2">GET request</a><br/>
+      3. <a href="/aboutapi/#3">GET request Example</a><br/>
+      4. <a href="/aboutapi/#4">POST request</a><br/>
+      5. <a href="/aboutapi/#5">POST request Example</a><br/>
+      6. <a href="/aboutapi/#6">PATCH request</a><br/>
+      7. <a href="/aboutapi/#7">PATCH request Example</a><br/>
+      8. <a href="/aboutapi/#8">DELETE request</a><br/>
+      9. <a href="/aboutapi/#9">DELETE request Example</a><br/>
+    </div>
+
+    <br>
+    <a name="1"></a>
+  	<h1><strong><u>Your Unique Developer API Key</u></strong></h1>
+    <p>Everybody using our API is required to use a valid Developer API Key. You automatically get a key as soon as you register yorself . Please login to your account, and check your dashboard to find your Developer API Key.<br></p>
+
+    <br>
+    <a name="2"></a>
+    <h1><strong><u>GET request:</u></strong></h1>
+    <p>With this API, you can obtain a user's all previously searched places information , photos URL , and user's submitted review/note on that place in json format. You just need to send a valid GET request to the following URL.
+    <pre style="font-size: 15px;">"http://placefinderapi.herokuapp.com/api"</pre>
+    Include all the following <strong>GET</strong> parameters when you request the URL:<br/>
+      <ol>
+        <li><strong>key</strong> -this is your API Developer Key</li>
+      </ol>
+    For obtaining a particular place info , include following optional parameter:<br/>
+      <ol>
+        <li><strong>searchplace</strong> -Name of the Place you want</li>
+      </ol>
+    </p>
+
+    <br>
+    <a name="3"></a>
+    <h1><strong><u>GET request Example:</u></strong></h1>
+    <p>Following code is in Python3:</p>
+    <pre pre-scrollable style="font-size: 15px;">
+import requests
+url="http://placefinderapi.herokuapp.com/api"
+params={
+    "key":"Your_Developer_API_Key",
+    "searchplace":"name_of_the_place"(optional)
+}
+r=requests.get(url,params=params)
+print(r.content)
+    </pre>
+
+  <br>
+  <a name="4"></a>
+  <h1><strong><u>POST request:</u></strong></h1>
+  <p>Searching a new place info and storing it in your place history via our API is very easy. You simply have to send a valid POST request to the URL shown below. Please make sure you are sending the data as the UTF-8 charset!
+  <pre style="font-size: 15px;">"http://placefinderapi.herokuapp.com/api"</pre>
+  Include all the following <strong>POST</strong> parameters when you request the URL:<br/>
+  <ol>
+    <li><strong>key</strong>- this is your API Developer Key</li>
+    <li><strong>searchplace</strong>- Name of the place whose info and pics you want</li>
+    <li><strong>review</strong>- Review/Note you want to add about this place(OPTIONAL)</li>
+    
+  </ol>
+ <br>
+  </p>
+  <a name="10"></a>
+  <div class="alert">
+    <p>Few points to remember while sending a request:
+      <ul>
+        <li>Your place name should be new i.e. if you have already searched before about place then it is stored in your history and you can not make the same request again . Rather you can find the contents of the place using a GET request</li>
+        <li>Place name should be valid . If you write any invalid place name the information about the place will not be dislayed but you will be shown 5 pictures of places that resembles your place name . </li>
+        <li>Photos of places are shown by PlaceAutocomplte method . The Place Autocomplete service can match on full words as well as substrings. Applications can therefore send queries as the user types, to provide on-the-fly place predictions.</li>
+        <li>Writing a review is not compulsory . </li>
+      </ul>
+    </p>
+  </div>
+
+  <br>
+  <a name="5"></a>
+  <h1><strong><u>POST request Example:</u></strong></h1>
+  <p>Following code is in Python3:
+    <pre pre-scrollable style="font-size: 15px;">
+import requests
+url="http://placefinderapi.herokuapp.com/api"
+data={
+    "key":"Your_Developer_API_Key",
+    "searchplace":"Name_of_Place",
+    "review":"write_your_note"(OPTIONAL)
+}
+r=requests.post(url,data=data)
+print(r.content)
+    </pre>
+    <br>
+  </p>
+
+  <br>
+  <a name="6"></a>
+  <h1><strong><u>PATCH request:</u></strong></h1>
+  <p>With this API you can update your Review/Note. You will need to send a valid PATCH request to the URL below to update the data:
+    <pre style="font-size: 15px;">"http://placefinderapi.herokuapp.com/api"</pre>
+    Include all the following <strong>PATCH</strong> parameters when you request the URL:<br/>
+    <ol>
+      <li><strong>key</strong>- this is your API Developer Key</li>
+      <li><strong>searchplace</strong>- Name of the place whose review you want to update</li>
+      <li><strong>review</strong>- Review/Note you want to set as new review</li>
+    
+    </ol>
+    <br>
+    
+  </p>
+
+  <br>
+  <a name="7"></a>
+  <h1><strong><u>PATCH request Example:</u></strong></h1>
+  <p>Following code is in Python3:
+    <pre pre-scrollable style="font-size: 15px;">
+import requests
+url="http://placefinderapi.herokuapp.com/api"
+data={
+    "key":"Your_Developer_API_Key",
+    "searchplace":"Name_of_Place_whose_Review_is_to_updated",
+    "review":"New_Review/Note"
+}
+r=requests.patch(url,data=data)
+print(r.content)
+    </pre>
+    <br>
+  </p>
+
+  <br>
+  <a name="8"></a>
+  <h1><strong><u>DELETE request:</u></strong></h1>
+  <p>With this API you can delete your Place History , i.e. , all the data along with pictures and your review/note . You will need to send a valid DELETE request to the URL below to delete the data:
+    <pre style="font-size: 15px;">"http://placefinderapi.herokuapp.com/api"</pre>
+    Include all the following <strong>DELETE</strong> parameters when you request the URL:<br/>
+    <ol>
+      <li><strong>key</strong>- this is your API Developer Key</li>
+      <li><strong>searchplace</strong>- Name of the Place </li>
+    </ol>
+  </p>
+
+  <br>
+  <a name="9"></a>
+  <h1><strong><u>DELETE request Example:</u></strong></h1>
+  <p>Following code is in Python3:
+    <pre pre-scrollable style="font-size: 15px;">
+import requests
+url="http://placefinderapi.herokuapp.com/api"
+data={
+    "key":"Your_Developer_API_Key",
+    "searchplace":"Name_of_place",
+    ""
+}
+r=requests.delete(url,data=data)
+print(r.content)
+    </pre>
+  </p>
+  </div>
+{% endblock %}

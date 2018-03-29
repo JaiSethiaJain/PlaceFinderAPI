@@ -1,0 +1,43 @@
+{% extends "home.html" %}
+{% block head %}
+
+<style>
+div.gallery {
+    margin: 5px;
+    border: 1px solid #ccc;
+    float: left;
+    width: 350px;
+}
+
+div.gallery:hover {
+    border: 1px solid #777;
+}
+
+div.gallery img {
+    width: 100%;
+    height: auto;
+}
+
+div.desc {
+    padding: 15px;
+    text-align: center;
+}
+</style>
+{% endblock %}
+{% block body %}
+<body>
+	{% for place_element in place_elements %}
+			<div class="gallery">
+  
+    			<img src="{{place_element[0]}}" height="350" width="350">
+  
+  			<div class="desc">{{place_element[1]}}</div>
+</div>
+
+	{% endfor %}
+
+</body>
+
+	
+
+{% endblock %}

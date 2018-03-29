@@ -1,0 +1,81 @@
+{% extends "dashboard.html" %}
+{% block head %}
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style> 
+input[type=text] {
+    width: 130px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white;
+    
+    background-position: 10px 10px; 
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 40px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+}
+
+input[type=text]:focus {
+    width: 100%;
+}
+</style>
+{% endblock %}
+{% block body %}
+
+<body>
+<div class="row-fluid">
+    <div class="span6 offset3" style="background-color: white;box-shadow: 5px 0px 5px #888;">
+      <div class="row-fluid">
+        <div class="span4">
+          <u><strong><h1 align="center" style="padding-left: 10px">Personal Info</h1></strong></u>
+        </div>
+        <br>
+        <br>
+      </div>
+      <dl class="dl-horizontal" >
+        <dt style="padding-bottom: 5px;">First Name:</dt><dd style="padding-bottom: 5px;">{{firstname}}</dd>
+        <dt style="padding-bottom: 5px;">Last Name:</dt><dd style="padding-bottom: 5px;">{{lastname}}</dd>
+      	<dt style="padding-bottom: 5px;">Username:</dt><dd style="padding-bottom: 5px;">{{username}}</dd>
+      	<dt style="padding-bottom: 5px;">Email:</dt><dd style="padding-bottom: 5px;">{{email}}</dd>
+        
+        <dt style="padding-bottom: 5px;">Country:</dt><dd style="padding-bottom: 5px;">{{country}}</dd>
+      	<dt style="padding-bottom: 5px;">API Key:</dt><dd style="padding-bottom: 5px;">{{apikey}}</dd>
+      </dl>
+    </div>
+</div>
+
+<br>
+
+{% if placehistory %}
+<div class="row-fluid">
+  <div class="span6 offset3" style="background-color: white;box-shadow: 5px 0px 5px #888;">
+      <div class="row-fluid">
+        <div class="span4">
+          <u><strong><h1 align="center" style="padding-left: 10px">Place History</h1></strong></u>
+        </div>
+        <br>
+        <br>
+      </div>
+      <dl class="dl-horizontal">
+
+          <div class="container">
+            <ol>
+      {% for abc in placehistory %}
+          <div class="pull-left">
+          <li><a href="/dashboard/{{username}}/{{abc}}">{{abc}}</a></li></div>
+          <div class="pull-right"><a href="/dashboard/{{username}}/{{abc}}/delete/">Delete</a></div>
+          <br>
+      {% endfor %}
+      </ol>
+          </div>
+    </dl>
+
+{% endif %}
+
+	
+</body>
+
+
+{% endblock %}

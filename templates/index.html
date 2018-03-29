@@ -1,0 +1,24 @@
+{% extends "home.html" %}
+{% block head %}
+<style>
+
+
+h1 {
+    text-align: center;
+    text-transform: uppercase;
+    color: #4CAF50;
+}
+img.displayed {
+    display: block;
+    margin-left: auto;
+    margin-right: auto }
+
+</style>
+{% endblock %}
+{% block body %}
+<body>
+	<strong><h1>WELCOME</h1></strong>
+	</br>
+	<img class="displayed" src="/static/welcome.jpg" height="500" width="800" align="bottom-right">
+</body>
+{% endblock %}

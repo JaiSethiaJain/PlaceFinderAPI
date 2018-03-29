@@ -1,0 +1,68 @@
+{% extends "dashboard.html" %}
+{% block head %}
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+img.displayed {
+    display: block;
+    margin-left: auto;
+    margin-right: auto }
+
+div.gallery {
+    margin: 5px;
+    border: 1px solid #ccc;
+    float: left;
+    width: 250px;
+}
+
+div.gallery:hover {
+    border: 1px solid #777;
+}
+
+div.gallery img {
+    width: 100%;
+    height: auto;
+}
+
+div.desc {
+    padding: 15px;
+    text-align: center;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    border: 1px solid #ddd;
+}
+
+th, td {
+    text-align: left;
+    padding: 16px;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2
+}
+</style>
+{% endblock %}
+{% block body %}
+<body>
+    <h1 align="center"><strong>REVIEW</strong></h1>
+<br>
+<div>
+
+    
+    <form enctype="multipart/form-data" style="margin-left: 20px" method="POST" autocomplete="off">
+        <label for="code"><strong><h5>Write your review or some note about the place below</h5></strong></label>
+      <textarea cols="60" rows="25" name="review" id="review" placeholder="{{review}}" style="width: 80%; height: 60%; display: inline; background: white; color:black;border-color: black; font-size: 15px;font-family: consolas;" wrap="off"></textarea>
+      <br>
+      <button type="submit">SAVE</button>
+    </form>
+        <br>
+</div>
+<br>
+<br>
+
+</body>
+
+
+{% endblock %}
